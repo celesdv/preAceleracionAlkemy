@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Alkemy.iml" filepath="$PROJECT_DIR$/.idea/Alkemy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/preAceleracionAlkemy/disney.iml" filepath="$PROJECT_DIR$/preAceleracionAlkemy/disney.iml" />
+    </modules>
+  </component>
+</project>
