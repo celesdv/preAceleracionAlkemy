@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class GeneroMapper {
@@ -26,20 +27,10 @@ public class GeneroMapper {
     }
 
     public List<GeneroDTO> generoEntity2DTOList(List<Genero> entities) {
-        List<GeneroDTO> dtos = new ArrayList();
-        for (Genero entity : entities){
-            dtos.add(generoEntity2DTO(entity));
-        }
-
-        return dtos;
+        return entities.stream().map(entity -> generoEntity2DTO(entity) ).collect(Collectors.toList());
     }
 
     public List<Genero> generoDTO2EntityList(List<GeneroDTO> dtoList) {
-        List<Genero> entities = new ArrayList();
-        for (GeneroDTO dto : dtoList){
-            entities.add(generoDTO2Entity(dto));
-        }
-
-        return entities;
+        return dtoList.stream().map(dto -> generoDTO2Entity(dto)).collect(Collectors.toList());
     }
 }

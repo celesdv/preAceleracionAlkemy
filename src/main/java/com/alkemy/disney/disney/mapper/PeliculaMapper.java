@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class PeliculaMapper {
@@ -61,23 +62,11 @@ public class PeliculaMapper {
     }
 
     public List<PeliculaDTO> peliculaEntity2DTOList(List<Pelicula> entities, boolean load) {
-        List<PeliculaDTO> dtos = new ArrayList();
-
-        for (Pelicula entity : entities){
-            dtos.add(peliculaEntity2DTO(entity, load));
-        }
-
-        return dtos;
+        return entities.stream().map(entity -> peliculaEntity2DTO(entity, load) ).collect(Collectors.toList());
     }
 
     public List<Pelicula> peliculaDTO2EntityList(List<PeliculaDTO> dtoList, boolean load) {
-        List<Pelicula> peliculas = new ArrayList();
-
-        for (PeliculaDTO dto : dtoList){
-            peliculas.add(peliculaDTO2Entity(dto, load));
-        }
-
-        return peliculas;
+        return dtoList.stream().map(dto -> peliculaDTO2Entity(dto, load)).collect(Collectors.toList());
     }
 
     public PeliculaBasicDTO entity2BasicDTO(Pelicula pelicula) {

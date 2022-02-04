@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Component
 public class PersonajeMapper {
@@ -51,20 +52,11 @@ public class PersonajeMapper {
     }
 
     public List<PersonajeDTO> personajeEntity2DTOList(List<Personaje> entities, boolean load) {
-        List<PersonajeDTO> dtoList = new ArrayList<>();
-
-        for (Personaje entity: entities) {
-            dtoList.add(personajeEntity2DTO(entity, load));
-        }
-        return dtoList;
+        return entities.stream().map(entity -> personajeEntity2DTO(entity, load) ).collect(Collectors.toList());
     }
 
     public List<Personaje> personajeDTO2EntityList(List<PersonajeDTO> dtoList, boolean load) {
-        List<Personaje> entities = new ArrayList<>();
-        for (PersonajeDTO dto: dtoList) {
-            entities.add(personajeDTO2Entity(dto));
-        }
-        return entities;
+        return dtoList.stream().map(dto -> personajeDTO2Entity(dto)).collect(Collectors.toList());
     }
 
     public List<PersonajeBasicDTO> basicEntity2DTOBasicList(Collection<Personaje> entities) {
